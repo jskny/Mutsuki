@@ -38,9 +38,21 @@ sub Deleter
 	rmtree("Release", 1);
 	rmtree("ipch", 1);
 
+
 	my $projectName = $ARGV[1];
 	my $delUrl = "";
 	my $rc = 0;
+
+
+
+	# Add 2018/03/19
+	# correspond to VS2017
+	rmtree(".vs/" . $projectName .  "/v15/ipch", 1);
+	$delUrl = ".vs/" . $projectName . "/v15/Browse.VC.db";
+	$rc = unlink $delUrl;
+	if ($rc) {
+		print "unlink " . $delUrl . "\n";
+	}
 
 
 	$delUrl = ${projectName} . ".sdf";
