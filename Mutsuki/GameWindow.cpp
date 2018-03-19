@@ -93,6 +93,7 @@ void GameSystemSetStartupSequence(BaseSequence* s)
 	}
 
 	s_sequenceCurrent = s;
+	s_sequenceCurrent->init();
 }
 
 
@@ -184,7 +185,15 @@ bool WindowLoop(void)
 	{
 		if (s_windowLoopWaitCounter == 0) {
 			ClsDrawScreen();
-			s_sequenceCurrent = s_sequenceCurrent->update();
+			auto next = s_sequenceCurrent->update();
+			if (next != s_sequenceCurrent) {
+				// ‰æ–Ê‘JˆÚ‚ª”­¶
+				// Ì‚Ì‰æ–Ê‚ð‰ð•ú‚µV‚µ‚¢‰æ–Ê‚ÖˆÚ‚éB
+				delete (s_sequenceCurrent);
+				s_sequenceCurrent = next;
+				s_sequenceCurrent->init();
+			}
+
 			ScreenFlip();
 			Sleep(10);
 		}
