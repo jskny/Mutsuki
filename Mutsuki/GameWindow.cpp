@@ -60,6 +60,10 @@ void BaseSequence::init(void)
 {
 }
 
+void BaseSequence::destroy(void)
+{
+}
+
 
 // 指定したフレーム分
 // Update を呼ぶのをスキップする。
@@ -187,8 +191,13 @@ bool WindowLoop(void)
 			ClsDrawScreen();
 			auto next = s_sequenceCurrent->update();
 			if (next != s_sequenceCurrent) {
+				if (next == NULL) {
+					return (false);
+				}
+
 				// 画面遷移が発生
 				// 昔の画面を解放し新しい画面へ移る。
+				s_sequenceCurrent->destroy();
 				delete (s_sequenceCurrent);
 				s_sequenceCurrent = next;
 				s_sequenceCurrent->init();

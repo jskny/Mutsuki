@@ -61,6 +61,7 @@ public:
 	virtual		~BaseSequence() = 0;
 	virtual		BaseSequence* update(void) = 0;
 	virtual	void	init(void) = 0; // シーケンス起動時に呼ばれる。
+	virtual void	destroy(void) = 0;
 
 };
 

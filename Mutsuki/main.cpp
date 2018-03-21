@@ -15,12 +15,18 @@ class GTitle : public BaseSequence
 {
 public:
 	void	init();
+	void	destroy(void);
 	BaseSequence*	update();
 
 };
 
 
 void GTitle::init()
+{
+}
+
+
+void GTitle::destroy(void)
 {
 }
 
