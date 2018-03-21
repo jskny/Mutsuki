@@ -107,7 +107,7 @@ bool WindowCreate(void)
 	ChangeWindowMode(TRUE);
 	SetMainWindowText("GameLib");
 
-	if (SetGraphMode(800, 600, 16) != DX_CHANGESCREEN_OK) {
+	if (SetGraphMode(WINDOW_W, WINDOW_H, 16) != DX_CHANGESCREEN_OK) {
 		// ウインドウサイズの変更に失敗した
 		return (false);
 	}

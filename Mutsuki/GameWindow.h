@@ -13,6 +13,10 @@
 #pragma once
 
 
+const unsigned int WINDOW_W = 800;
+const unsigned int WINDOW_H = 600;
+
+
 class BaseSequence;
 
 
