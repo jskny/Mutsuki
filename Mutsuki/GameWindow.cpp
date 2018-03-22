@@ -168,9 +168,11 @@ bool WindowCreate(void)
 
 void WindowClose(void)
 {
-	delete (s_sequenceCurrent);
-	s_sequenceCurrent = NULL;
-
+	if (s_sequenceCurrent != NULL) {
+		s_sequenceCurrent->destroy();
+		delete (s_sequenceCurrent);
+		s_sequenceCurrent = NULL;
+	}
 
 	GameSystemDestroy();
 	DxLib_End();
